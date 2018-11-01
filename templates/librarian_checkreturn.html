@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Return Record</title>
+	<link type="text/css" rel="stylesheet" href="../static/css/librarian_style.css" />
+</head>
+<body background="../static/images/backward.png">
+    <header>
+    	<img src="../static/images/lo.png" style="width:180px;height: 50px;margin-left: 6px;" />
+    </header>
+    <div id="Bibliosoft" class="menu_list container">   	
+    	<ul style="list-style-type: none;font-size: 17px;">
+    		<li><a href="{% url 'librarian_changepwd' %}" style="color: white;">change password</a></li><br>
+    		<li><a href="{% url 'librarian_managebook' %}" style="color: white;">manage books</a></li><br>
+    		<li><a href="{% url 'librarian_addcategory' %}" style="color: white;">add category</a></li><br>
+    		<li><a href="{% url 'librarian_addreader' %}" style="color: white;">reader register</a></li><br>
+    		<li><a href="{% url 'librarian_managereader' %}" style="color: white;">manage reader</a></li><br>
+    		<li><a href="{% url 'librarian_checkincome' %}" style="color: white;">check income</a></li><br>
+    		<li><a href="{% url 'librarian_post' %}" style="color: white;">edit post</a></li><br>
+    		<li><a href="{% url 'librarian_lend' %}" style="color: white;">lend book</a><li><br>
+    		<li><a href="{% url 'librarian_return' %}" style="color: white;">return book</a><li><br>
+    		<li><a href="{% url 'librarian_home' %}" style="color: white;">return homepage</a><li><br>
+    		<li><a href="{% url 'homepage' %}" style="color: white;">logout</a><li>
+    	</ul>
+    </div>
+
+    {% if returnlist %}
+        <table class="librarian_table">
+            <thead>
+				<tr>
+					<th>list num</th>
+					<th>reader id</th>
+					<th>lend book</th>
+					<th>date</th>
+					<th>isreturned</th>
+				</tr>
+            </thead>
+            <tbody>
+                {% for item in returnlist %}
+                    <tr>
+                        <td>{{ item.list_id }}</td>
+                        <td>{{ item.reader_id }}</td>
+                        <td>{{ item.book_name }}</td>
+                        <td>{{ item.date }}</td>
+                        <td>yes</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <div>{{ ans }}</div>
+</body>
+</html>

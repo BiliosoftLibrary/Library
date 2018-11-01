@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="../static/css/normalize.css" /> -->
+		<!-- <link rel="stylesheet" type="text/css" href="../static/css/demo.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../static/css/component.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/content.css" />
+		<script src="../static/js/modernizr.custom.js"></script>
+</head>
+<body>
+	<div>
+	<table border="0">
+		<tr>
+		<td><header id="header">
+			<div class="container">
+				<div class="logo"><a href="{% url 'homepage' %}"><img src="../static/images/logo.jpg" alt="Bibliosoft" ></a></div>
+				<nav id="nav">
+					<div class="opener-holder">
+						<a href="{% url 'homepage' %}" class="nav-opener"><span></span></a>
+					</div>
+				</nav>
+			</div>
+	</header>
+	</td>
+		<td><input class="search" type="text" placeholder=" search for books..." name="search" style="margin-left: 700px;margin-top: 20px;"> 
+ <td>
+	<button class="link" onclick="alert('Please search after login!')">search</button>
+</td>
+		</tr>
+ </table>
+	<div>
+		   <li style="background-image: url(../static/images/home.jpg);width: 2000px;height:500px;">
+    <form action = "{% url 'homepage' %}" method="post">
+        <input class="text" type="text" placeholder="  username" name="username" style="margin-left: 700px;margin-top:150px;"/><br>
+        <input class="text"type="password" placeholder="  password" name="password" style="margin-left: 700px;margin-top:15px;"/>
+        <select name="identity" style="height:30px;color: white;background: transparent;font-size:15px;font-family:'comic sans ms'">
+            <option value="librarian" >librarian</option>
+            <option value="reader" >reader</option>
+        </select>
+        
+        <input class="button" type="submit" value="login" style="margin-left: 830px;margin-top:15px;" name="login" /><br>
+        <input class="button" type="submit" value="    reset password" name="librarian_recover" style="margin-left: 830px;margin-top:15px;"/>
+    </form>
+    <div style="font-size:20px;font-family:'comic sans ms';color:white;margin-left: 870px;">{{ ans }}</div>
+               <div style="font-size:20px;font-family:'comic sans ms';color:white;margin-left: 820px;">{{ new_ans }}</div>
+               <a href="{% url 'admin_login' %}" style="margin-left: 850px;font-size:20px;color: white;font-family:'comic sans ms'">admin login</a>
+		<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
+
+		<button type="button">recover password</button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-form content-style-form-2">
+						<span class="icon icon-close">Close the dialog</span>
+						<h2>Recover password</h2>
+						<form action = "{% url 'homepage' %}" method="post">
+							<p><label>Reader-id</label><input type="text" name="reader_id" /></p>
+							<p><label>Email</label><input type="text" name="email" /></p>
+							<p><input  style="margin-left: 80px;margin-top:20px;width: 200px;height: 50px;font-size: 25px;font-family:'comic sans ms';background: transparent;color: white;" type="submit" name="signup" value="  Send request" /></p>
+						</form>
+					</div>
+				</div>
+			</div>
+			<script src="../static/js/classie.js"></script>
+  <script src="../static/js/uiMorphingButton_fixed.js"></script>
+	<script>
+				(function() {
+					var docElem = window.document.documentElement, didScroll, scrollPosition;
+	
+					// trick to prevent scrolling when opening/closing button
+					function noScrollFn() {
+						window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+					}
+	
+					function noScroll() {
+						window.removeEventListener( 'scroll', scrollHandler );
+						window.addEventListener( 'scroll', noScrollFn );
+					}
+	
+					function scrollFn() {
+						window.addEventListener( 'scroll', scrollHandler );
+					}
+	
+					function canScroll() {
+						window.removeEventListener( 'scroll', noScrollFn );
+						scrollFn();
+					}
+	
+					function scrollHandler() {
+						if( !didScroll ) {
+							didScroll = true;
+							setTimeout( function() { scrollPage(); }, 60 );
+						}
+					};
+	
+					function scrollPage() {
+						scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+						didScroll = false;
+					};
+	
+					scrollFn();
+	
+					[].slice.call( document.querySelectorAll( '.morph-button' ) ).forEach( function( bttn ) {
+						new UIMorphingButton( bttn, {
+							closeEl : '.icon-close',
+							onBeforeOpen : function() {
+								// don't allow to scroll
+								noScroll();
+							},
+							onAfterOpen : function() {
+								// can scroll again
+								canScroll();
+							},
+							onBeforeClose : function() {
+								// don't allow to scroll
+								noScroll();
+							},
+							onAfterClose : function() {
+								// can scroll again
+								canScroll();
+							}
+						} );
+					} );
+	
+					// for demo purposes only
+					[].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) { 
+						bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
+					} );
+				})();
+			</script>
+		</div><!-- morph-button -->
+		</li>
+	</div>
+	<div><a href="{% url 'homepage' %}"><img src="../static/images/post.jpg" alt="post"style="width:130px;height: 120px;margin-left: 850px;">
+	<div class="title" style="margin-left: 790px;">Post views</div><br>
+	</div>
+    <div class="font" style="margin-left: 780px;">{{ post }}</div>
+
+  
+			
+</body>
+</html>

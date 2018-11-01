@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
+	<script type="text/javascript" src="../static/js/jquery-2.1.4.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../static/css/librarian_style.css" />
+	<link type="text/css" rel="stylesheet" href="../static/css/librarian_post.css" />
+    
+    <title>LibrarianPost</title>
+    
+    
+    <script type="text/javascript">
+        function editConfig() {
+            var form = document.getElementById('form');
+            var div = document.getElementById('div');
+            form.hidden = !form.hidden;
+            div.hidden = !div.hidden;
+        }
+    </script>
+</head>
+<body background="../static/images/backward.png">
+    
+    <!--<div id="Bibliosoft" class="menu_list" >
+		<ul style="list-style-type: none;">
+			<li><a href="{% url 'librarian_changepwd' %}" style="color: white;">change password</a></li><br>
+			<li><a href="{% url 'librarian_managebook' %}" style="color: white;">manage books</a></li><br>
+			<li><a href="{% url 'librarian_addcategory' %}" style="color: white;">add category</a></li><br>
+			<li><a href="{% url 'librarian_addreader' %}" style="color: white;">reader register</a></li><br>
+			<li><a href="{% url 'librarian_managereader' %}" style="color: white;">manage reader</a></li><br>
+			<li><a href="{% url 'librarian_checkincome' %}" style="color: white;">check income</a></li><br>
+			<li><a href="{% url 'librarian_post' %}" style="color: white;">edit post</a></li><br>
+			<li><a href="{% url 'librarian_lend' %}" style="color: white;">lend book</a></li><br>
+			<li><a href="{% url 'librarian_return' %}" style="color: white;">return book</a></li><br>
+			<li><a href="{% url 'librarian_home' %}" style="color: white;">return homepage</a></li><br>
+			<li><a href="{% url 'homepage' %}" style="color: white;">logout</a></li><br>
+			<li><a href="{% url 'homepage' %}" style="color: white;">other
+				<ul class="sub_menu" style="list-style-type: none;">
+					<li><a href="{% url 'librarian_deletelist' %}" style="color: white;">check the delete list</a></li>
+					<li><a href="{% url 'librarian_addbook' %}" style="color: white;">add book</a></li>
+				</ul>
+			</a><li>
+		</ul>
+	</div>-->
+	
+	<nav class="navbar navbar-transparent" role="navigation">
+  		<div class="container-fluid">
+    		<div class="nav navbar-nav librarian_header_img">
+      			<img src="../static/images/lo.png" alt="logo" width="200px" />
+    		</div>
+    		<ul class="nav navbar-nav navbar-right librarian_header_right">
+      			<!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>username</a></li>-->
+      			<li class="dropdown">
+      				<a href="#">
+      					<span class="glyphicon glyphicon-user"></span>
+      					<span>{{login}}</span>
+      					<span class="caret"></span>
+      				</a>
+					<ul class="dropdown-menu">
+						<li><a href="{% url 'librarian_changepwd' %}"><span class="glyphicon glyphicon-cog"></span><span>Change Password</span></a></li>
+						<li><a href="{% url 'librarian_home' %}"><span class="glyphicon glyphicon-home"></span><span>Return Homepage</span></a></li>
+						<li><a href="{% url 'homepage' %}"><span class="glyphicon glyphicon-log-out"></span><span>Logout</span></a></li>
+					</ul>
+				</li>
+    		</ul>
+  		</div>
+	</nav>
+	
+	<div id="Bibliosoft" class="container-fluid librarian_menu">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs nav-stacked menu_list" style="list-style-type: none;">
+					<!--<li><a href="{% url 'librarian_managebook' %}"><span>Manage Books</span></a></li>-->
+					<li>
+						<a href="#ManageBooks" class="nav-header collapsed" data-toggle="collapse">
+							<span>Manage Books</span>
+							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
+						</a>
+						<ul id="ManageBooks" class="nav nav-list collapse menu_submenu" style="height: 0px;">
+							<li><button type="button" value="add books" class="menu_button">Add Books</button></li>
+							<li><button type="button" value="check delete list" class="menu_button">Check Delete List</button></li>
+						</ul>
+					</li>
+					<li><a href="{% url 'librarian_lend' %}"><span>Lend Book</span></a></li>
+					<li><a href="{% url 'librarian_return' %}"><span>Return Book</span></a></li>
+					<li><a href="{% url 'librarian_addcategory' %}"><span>Add Category</span></a></li>
+					<!--<li><button type="button" value="{% url 'librarian_addcategory' %}" class="menu_button">Add Category</button></li>-->
+					<li>
+						<a href="#ReaderSetting" class="nav-header collapsed" data-toggle="collapse">
+							<span>Reader Setting</span>
+							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
+						</a>
+						<ul id="ReaderSetting" class="nav nav-list collapse menu_submenu" style="height: 0px;">
+							<li><a href="{% url 'librarian_managereader' %}"><span>Manage Reader</span></a></li>
+							<li><a href="{% url 'librarian_addreader' %}"><span>Reader Register</span></a></li>
+						</ul>
+					</li>
+					<li><a href="{% url 'librarian_checkincome' %}"><span>Check Income</span></a></li>
+					<li><a href="{% url 'librarian_post' %}"><span>Edit Post</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+    <!--<div>
+    	<div class="btn" id="div">
+    		{{ post }}
+        	<button type="button" id="edit" onclick="editConfig()">edit</button>
+    	</div>
+    	<div>
+        	<form action = "{% url 'librarian_post' %}" id="form" method="post" hidden>
+        	    <textarea name="post" id="text" cols="30" rows="10">
+        	        {{ post }}
+        	    </textarea>
+            <input type="submit" value="Publish" name="Post" class="submit_button"/>
+        	</form>
+    	</div>
+
+    </div>-->
+    
+    <div class="login-section">
+	    <div class="login-w3l">
+	    	<div id="div">
+	    		<!--{{ post }}-->
+	    		<span>This is the text.</span>
+	    	</div>
+			<!--<h1 class="sub-head-w3-agileits">Reader Register</h1>
+			<div class="login-form">	
+				<form action = "{% url 'librarian_addreader' %}" method="post">
+					<input type="text" class="user" name="User Name" placeholder="ID"required="" />
+					<input type="text" class="lock" name="Email" placeholder="Email"required="" />
+				</form>	
+			</div>-->
+		</div> 
+	</div>
+
+</body>
+</html>

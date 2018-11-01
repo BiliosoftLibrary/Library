@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
+	<script type="text/javascript" src="../static/js/jquery-2.1.4.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../static/css/reader_style.css" />
+	<link type="text/css" rel="stylesheet" href="../static/css/reader_home.css" />
+	
+    <title>ReaderHomepage</title>
+</head>
+<body background="../static/images/backward_rev.png">
+	<nav class="navbar navbar-transparent" role="navigation">
+  		<div class="container-fluid">
+    		<div class="nav navbar-nav reader_header_img">
+      			<img src="../static/images/lo.png" alt="logo" width="200px" />
+    		</div>
+    		<ul class="nav navbar-nav navbar-right reader_header_right">
+      			<!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>username</a></li>-->
+      			<li class="dropdown">
+      				<a href="#">
+      					<span class="glyphicon glyphicon-user"></span>
+      					<span>{{login}}</span>
+      					<span class="caret"></span>
+      				</a>
+					<ul class="dropdown-menu">
+						<li><a href="{% url 'reader_changeinfo' %}"><span class="glyphicon glyphicon-cog"></span><span>Change Imformation</span></a></li>
+						<li><a href="{% url 'reader_home' %}"><span class="glyphicon glyphicon-home"></span><span>Return Homepage</span></a></li>
+						<li><a href="{% url 'homepage' %}"><span class="glyphicon glyphicon-log-out"></span><span>Logout</span></a></li>
+					</ul>
+				</li>
+    		</ul>
+  		</div>
+	</nav>
+	
+	<div id="Bibliosoft" class="container-fluid reader_menu">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs nav-stacked menu_list" style="list-style-type: none;">
+					<li><a href="{% url 'reader_reserve' %}"><span>Reserve Books</span></a></li>
+					<li><a href="{% url 'reader_lending' %}"><span>Lending Books</span></a></li>
+					<li><a href="{% url 'reader_returnhistory' %}"><span>Return History</span></a></li>
+					<!--<li><button type="button" value="{% url 'librarian_addcategory' %}" class="menu_button">Add Category</button></li>-->
+					<!--<li>
+						<a href="#OtherSetting" class="nav-header collapsed" data-toggle="collapse">
+							<span>Reader Setting</span>
+							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
+						</a>
+						<ul id="OtherSetting" class="nav nav-list collapse menu_submenu" style="height: 0px;">
+							<li><a href="{% url 'librarian_managereader' %}"><span>Manage Reader</span></a></li>
+							<li><a href="{% url 'librarian_addreader' %}"><span>Reader Register</span></a></li>
+						</ul>
+					</li>-->
+					<li><a href="{% url 'reader_lookupfine' %}"><span>Lookup to Pay Fine</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!--<div id="Bibliosoft">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+			<nav id="fh5co-main-menu" role="navigation">
+				<ul>
+					<li class="fh5co-active"><a href="{% url 'reader_home' %}">home</a></li><br>
+					<li><a href="{% url 'reader_lending' %}">lending books</a></li><br>
+					<li><a href="{% url 'reader_returnhistory' %}">return history</a></li><br>
+					<li><a href="{% url 'reader_lookupfine' %}">lookup to pay fine</a></li><br>
+					<li><a href="{% url 'reader_reserve' %}">reserve book</a></li><br>
+					<li><a href="{% url 'reader_changeinfo' %}">change imformation</a></li><br>
+					<li><a href="{% url 'homepage' %}">logout</a></li>
+				</ul>
+			</nav>
+		<br><br>
+		<img src="../static/images/lo.png" style="width:350px;height: 100px;margin-left: 10px;" />
+	</aside>
+	</div>
+	<div>
+		<div class="font" style="margin-left: 1600px;margin-top: 30px;">{{ login }} already logged in !!</div>
+	</div>
+	<br><br>
+	<table border="0">
+		<tr>
+			<td>
+				<img src="../static/images/change_info.jpg" style="margin-left: 420px;margin-top: 0px;height: 600px;width:800px;"/>
+	</td>
+		<td style="background: gray;opacity: 0.8;margin-top:300px;height:600px;width: 650px;"> 
+			<br>
+
+		
+		<form action="{% url 'reader_search' %}" method="post">
+			<input class="text" style="margin-left: 80px;" placeholder="search for books..."name="search">
+			<a href="reader_search.html">
+			<button type="submit" style="height:30px;width:100px;background: black;opacity: 0.7;color: white;font-family: 'comic sans ms';font-size:25;"><i class="fa fa-search"></i>search</button>
+			</a>
+		</form>
+		<div style="margin-left: 80px;">{{ ans }}</div>
+		
+        <!-- <h5 class="titwo"style="margin-left: 220px;margin-top: 40px;">change email</h5> -->
+        <!-- <input class="text" style="margin-left: 130px;"placeholder=" new email" name="email"> -->
+        <!-- <br> -->
+        <!-- <input style="height:30px;width:100px;background: black;opacity: 0.7;color: white;font-family: 'comic sans ms';font-size:25;margin-left: 270px;margin-top: 20px;"class="button"submit" value="     submit"  /> -->
+    <!--</form>
+</td>
+		</tr>
+ </table>-->
+	<div class="view_div">
+		<span class="view_span">Welcome to Bibliosoft Reader System!</span>
+	</div>
+    
+
+
+</body>
+</html>

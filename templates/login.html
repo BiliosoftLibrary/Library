@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin login</title>
+    <link rel="stylesheet" href="..//css/style.css" />
+</head>
+<body style="width: 100%;"> 
+	<div>
+	<header id="header">
+			<div class="container">
+				<div class="logo"><a href="#"><img src="../static/images/logo.jpg" alt="Bibliosoft" "></a></div>
+				<nav id="nav">
+					<div class="opener-holder">
+						<a href="#" class="nav-opener"><span></span></a>
+					</div>
+				</nav>
+			</div>
+	</header>
+	<div>
+		   <li style="background-image: url(../static/images/home.jpg);width: 1800px;height:600px;">
+    <form action = "{% url 'admin_login' %}" method="post">
+        <input class="text" placeholder=" username" name="username"style="margin-left: 700px;margin-top:250px;"/>
+        <input class="text" placeholder=" password" name="password"style="margin-left: 700px;margin-top:20px;"/>
+        <br>
+        <input class="button"type="submit" value="login"style="margin-left: 830px;margin-top:20px;" name="login"/>
+    </form><br>
+    <div style="font-size:20px;font-family:'comic sans ms';color:white;margin-left: 870px;">{{ ans }}</div>
+</body>
+</html>

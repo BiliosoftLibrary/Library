@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <a href="{% url 'admin_addlibrarian' %}">librarian register</a>
+    <a href="{% url 'admin_manage' %}">manage librarian</a>
+    <a href="{% url 'admin_defaultvalue' %}">set book related regulation</a>
+    <a href="{% url 'admin_request' %}">Process reset password request</a>
+    <a href="{% url 'admin_home' %}">return homepage</a>
+    <a href="{% url 'homepage' %}">logout</a>
+
+    {% if request_list %}
+        <table border="1">
+            <thread>
+                <th>librarian id</th>
+                <th>edit</th>
+            </thread>
+            <tbody>
+                {% for item in request_list %}
+                    <tr>
+                        {% if item.isrequest == '1' %}
+                        <td>{{ item.id }}</td>
+                        <td>
+                            <form action="{% url 'admin_request' %}" method="post">
+                                <input type="text" name="librarian id" value="{{ item.id }}" hidden>
+                                <input type="submit" name="agree" value="agree">
+                            </form>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+</body>
+</html>

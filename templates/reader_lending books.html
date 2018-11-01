@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<link rel="stylesheet" href="../static/css/animate.css">
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+    <link rel="stylesheet" href="../static/css/marstyle.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+    <div id="Bibliosoft">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<aside id="fh5co-aside" role="complementary" >
+			<nav id="fh5co-main-menu" role="navigation">
+				<ul>
+					<li><a href="{% url 'reader_home' %}">home</a></li><br>
+					<li><a href="{% url 'reader_lending' %}">lending books</a></li><br>
+					<li><a href="{% url 'reader_returnhistory' %}">return history</a></li><br>
+					<li><a href="{% url 'reader_lookupfine' %}">lookup to pay fine</a></li><br>
+					<li><a href="{% url 'reader_reserve' %}">reserve book</a></li><br>
+					<li><a href="{% url 'reader_changeinfo' %}">change imformation</a></li><br>
+					<li><a href="{% url 'homepage' %}">log out</a></li>
+				</ul>
+			</nav>
+		<br><br>
+		<img src="../static/images/lo.png" style="width:350px;height: 100px;margin-left: 10px;" />
+	</aside>
+	</div>
+	<div>
+		<div class="font" style="margin-left: 1600px;margin-top: 30px;">{{ login }} already logged in !!</div>
+		<li style="background-image: url(../static/images/search.jpg);margin-top:10px;margin-left: 380px;height: 850px;width: 1520px;">
+		<form action="{% url 'reader_search' %}" method="post">
+        <input class="search" type="text" placeholder=" search for books..." name="search"style="margin-top: 140px;margin-left: 530px;">
+        <button class="button" type="submit"style="margin-left: 15px;color: black;"><i class="fa fa-search" ></i>search</button>
+    </form>
+
+    {% if reader_lendingbooks %}
+        <table border="1" style="margin-left: 470px;margin-top:100px;height: 200px;width: 600px;">
+            <thread>
+                <th class="font" style="text-align: center;">book name</th>
+                <th class="font" style="text-align: center;">remaining lending days</th>
+            </thread>
+            <tbody>
+                {% for item in reader_lendingbooks %}
+                    {% if item.isreturned == '0' %}
+                    <tr>
+                        <td class="font" style="text-align: center;">{{ item.book_name }}</td>
+                        <td class="font" style="text-align: center;">{{ item.remain_lendingtime }}</td>
+
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>

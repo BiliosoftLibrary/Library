@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Changeinfo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Submit">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
+<link href="../static/css/admin&reader_df.css" rel='stylesheet' type='text/css' />
+<!--fonts--> 
+<style>
+	.menu_list {
+	width: 14%;
+	height: 70%;
+	
+	margin: 0;
+	border-radius: 20px;
+	border:2px solid #000000;
+	
+	position: 'relative';
+	float: left ;
+	margin-right: -3px;
+	}
+	.function{
+		
+		margin: 0 100px;
+		float: right ;
+	}
+    a{ text-decoration:none; 
+	margin-left: 1px;}
+	a:hover{ text-decoration:underline; } 
+	.rest{
+		
+	}
+
+	.sub_menue
+	{
+	display:none; 
+	             
+	}
+	li:hover .sub_menue
+	{
+	display:block;  
+	          
+	}
+	</style>
+</head>
+<body>
+<header>
+		<img src="../static/images/lo.png" style="width:180px;height: 50px;margin-left: -1150px;" />
+	</header>
+	
+	
+	<div id="Bibliosoft" class="menu_list" >
+		
+				<ul style="list-style-type: float:center;">
+					<li><a href="{% url 'librarian_changepwd' %}" style="color: black;">change password</a></li><br>
+					<li><a href="{% url 'librarian_managebook' %}" style="color: black;">manage books</a></li><br>
+					<li><a href="{% url 'librarian_addcategory' %}" style="color: black;">add category</a></li><br>
+					<li><a href="{% url 'librarian_addreader' %}" style="color: black;">reader register</a></li><br>
+					<li><a href="{% url 'librarian_managereader' %}" style="color: black;">manage reader</a></li><br>
+					<li><a href="{% url 'librarian_checkincome' %}" style="color: black;">check income</a></li><br>
+					<li><a href="{% url 'librarian_post' %}" style="color: black;">edit post</a></li><br>
+					<li><a href="{% url 'librarian_lend' %}" style="color: black;">lend book</a></li><br>
+					<li><a href="{% url 'librarian_return' %}" style="color: black;">return book</a></li><br>
+					<li><a href="{% url 'librarian_home' %}" style="color: black;">return homepage</a></li><br>
+					<li><a href="{% url 'homepage' %}" style="color: black;">logout</a></li><br>
+					<li><a href="{% url 'homepage' %}" style="color: black;">other
+						<ul class="sub_menue" style="list-style-type: none;">
+						<li><a href="{% url 'librarian_deletelist' %}" style="color: black;">check the delete list</a></li>
+						<li><a href="{% url 'librarian_addbook' %}" style="color: black;">add book</a></li>
+						</ul>
+					</a><li>
+				</ul>
+			<!-- </nav>
+		<br><br>
+		
+	</aside> -->
+	</div>
+    <!--<a href="{% url 'librarian_changepwd' %}">change password</a>
+    <a href="{% url 'librarian_managebook' %}">manage books</a>
+    <a href="{% url 'librarian_addcategory' %}">add category</a>
+    <a href="{% url 'librarian_changepwd' %}">change password</a>
+    <a href="{% url 'librarian_addreader' %}">reader register</a>
+    <a href="{% url 'librarian_managereader' %}">manage reader</a>
+    <a href="{% url 'librarian_checkincome' %}">check income</a>
+    <a href="{% url 'librarian_post' %}">edit post</a>
+    <a href="{% url 'librarian_lend' %}">lend book</a>
+    <a href="{% url 'librarian_return' %}">return book</a>
+    <a href="{% url 'librarian_home' %}">return homepage</a>
+    <a href="{% url 'homepage' %}">logout</a>-->
+    <!--<h1>Change Password</h1>-->
+		<div class="login-section">
+	        <div class="login-w3l">	
+	   
+							<h2 class="sub-head-w3-agileits">Change Password</h2>
+						<div class="login-form">	
+							<!--<h3 class="sub-head-w3-agileits">Old Password</h3>-->
+							<form action = "{% url 'reader_changeinfo' %}" method="post">
+								<input type="text" class="user" name="New Password" placeholder="New Password" required="" />
+										<!--<h3 class="sub-head-w3-agileits">New Password</h3>-->
+								<input type="text" class="lock" name="Email"  placeholder="Email " required="" />
+								<!--<div class="signin-rit">
+								<div class="clear"> </div>
+								</div>-->
+								<input type="submit" value="Submit">
+							</form>	
+						
+				</div>
+				
+
+    
+</body>
+</html>

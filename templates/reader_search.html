@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta charset="UTF-8">
+    <title>search</title>
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+    <link rel="stylesheet" href="../static/css/marstyle.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+    <div id="Bibliosoft">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<aside id="fh5co-aside" role="complementary" >
+			<nav id="fh5co-main-menu" role="navigation">
+				<ul>
+					<li><a href="{% url 'reader_home' %}">home</a></li><br>
+					<li><a href="{% url 'reader_lending' %}">lending books</a></li><br>
+					<li><a href="{% url 'reader_returnhistory' %}">return history</a></li><br>
+					<li><a href="{% url 'reader_lookupfine' %}">lookup to pay fine</a></li><br>
+					<li><a href="{% url 'reader_reserve' %}">reserve book</a></li><br>
+					<li><a href="{% url 'reader_changeinfo' %}">change imformation</a></li><br>
+					<li><a href="{% url 'homepage' %}">log out</a></li>
+				</ul>
+			</nav>
+		<br><br>
+		<img src="../static/images/lo.png" style="width:350px;height: 100px;margin-left: 10px;" />
+	</aside>
+	</div>
+	<div>
+		<div class="font" style="margin-left: 1600px;margin-top: 30px;">{{ login }} already logged in !!</div>
+		<li style="background-image: url(../static/images/search.jpg);margin-top:10px;margin-left: 380px;height: 850px;width: 1520px;">
+		<form action="{% url 'reader_search' %}" method="post">
+        <input class="search" type="text" placeholder=" search for books..." name="search"style="margin-top: 140px;margin-left: 530px;">
+        <button class="button" type="submit"style="margin-left: 15px;color: black;"><i class="fa fa-search" ></i>search</button>
+    </form>
+    {% if searchresult %}
+        <table border="3" style="margin-left: 280px;margin-top:100px;height: 300px;width: 1000px;">
+            <thread>
+                <th class="font" style="text-align: center;">book name</th>
+                <th class="font" style="text-align: center;">book id</th>
+                <th class="font" style="text-align: center;">book floor</th>
+                <th class="font" style="text-align: center;">book shelf</th>
+                <th class="font" style="text-align: center;">book area</th>
+                <th class="font" style="text-align: center;">book keeping num</th>
+                <th class="font" style="text-align: center;">reserve book</th>
+            </thread>
+            <tbody>
+                {% for item in searchresult %}
+                    <tr>
+                        <td class="font" style="text-align: center;">{{ item.name }}</td>
+                        <td class="font" style="text-align: center;">{{ item.id }}</td>
+                        <td class="font" style="text-align: center;">{{ item.floor }}</td>
+                        <td class="font" style="text-align: center;">{{ item.shelf }}</td>
+                        <td class="font" style="text-align: center;">{{ item.area }}</td>
+                        <td class="font" style="text-align: center;">
+                            {% if item.islent == '0' %}
+                                1
+                            {% else %}
+                                0
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="{% url 'reader_search' %}" method="post">
+                                <input style="font-size: 25px;color: white;font-family: 'comic sans ms';" name="book id" value="{{ item.id }}" hidden>
+                                <input type="submit" style="background: black;color: white;font-family: 'comic sans ms';font-size: 25px;text-align: center;width: 100px;margin-left: 10px;;" name="reserve" value="reserve">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+		</li>
+	</div>
+
+
+    
+</body>
+</html>
